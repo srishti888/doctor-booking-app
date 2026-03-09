@@ -1,14 +1,14 @@
 from django.http import JsonResponse
 from django.urls import path
-from .views import get_available_slots, create_appointment
+from .views import get_available_slots, create_appointment, get_all_doctors
 
 def root(request):
     return JsonResponse({"message": "Server is on"})
 
 
 urlpatterns = [
-    # path('', views.home),
-    path("doctors/<slug:slug>/slots/", get_available_slots),
-    path("doctors/<slug:slug>/book/", create_appointment),
-    path("", root),   # http://127.0.0.1:8000/
+    path("doctors/", get_all_doctors),                          # GET all doctors
+    path("doctors/<slug:slug>/slots/", get_available_slots),    # GET slots for doctor
+    path("doctors/<slug:slug>/book/", create_appointment),      # POST book appointment
+    path("", root),
 ]
