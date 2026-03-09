@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "booking",
     "rest_framework",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -51,7 +51,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
+
 
 ROOT_URLCONF = "config.urls"
 
@@ -107,6 +109,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://10.125.183.182:3000",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

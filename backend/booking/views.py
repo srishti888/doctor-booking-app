@@ -9,6 +9,11 @@ from rest_framework.response import Response
 from .models import Doctor, Appointment
 from .serializers import DoctorSerializer, AppointmentSerializer
 
+# from django.http import JsonResponse
+
+# def home(request):
+#     return JsonResponse({"message": "Doctor Booking API running"})
+
 
 @api_view(["GET"])
 def get_available_slots(request, slug):
@@ -58,7 +63,7 @@ def get_available_slots(request, slug):
 def create_appointment(request, slug):
 
     doctor = get_object_or_404(Doctor, slug=slug)
-
+    
     data = request.data.copy()
     data["doctor"] = doctor.id
 
